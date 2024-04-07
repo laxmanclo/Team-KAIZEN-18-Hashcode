@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Summary Generator</title>
+    <style>
+        #slideshow {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #slideshow img.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Summary Generator</h1>
+    <form id="image-form" enctype="multipart/form-data">
+        <input type="file" id="image-input" name="images[]" multiple accept="image/jpeg">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div>
+        <input type="text" id="keyword-input" placeholder="Enter a keyword">
+        <button id="search-button">Search</button>
+    </div>
+
+    <div id="slideshow"></div>
+
+    <script>
+        const form = document.getElementById('image-form');
+        const slideshow = document.getElementById('slideshow');
+        const keywordInput = document.getElementById('keyword-input');
+        const searchButton = document.getElementById('search-button');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            fetch('/process_images', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Images and descriptions uploaded successfully');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        searchButton.addEventListener('click', () => {
+            const keyword = keywordInput.value;
+
+            fetch('/search_images', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: keyword=${encodeURIComponent(keyword)}
+            })
+            .then(response => response.json())
+            .then(data => {
+                displaySlideshow(data.image_paths, data.descriptions);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        function displaySlideshow(images, descriptions) {
+            slideshow.innerHTML = '';
+
+            for (let i = 0; i < images.length; i++) {
+                const img = document.createElement('img');
+                img.src = images[i];
+                img.alt = descriptions[i];
+                img.classList.add(i === 0 ? 'active' : '');
+                slideshow.appendChild(img);
+            }
+
+            const slides = document.querySelectorAll('#slideshow img');
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            setInterval(nextSlide, 3000); // Change slide every 3 seconds
+        }
+    </script>
+</body>
+</html>

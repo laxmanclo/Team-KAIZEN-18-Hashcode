@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        input, button {
+         display: block;
+         width: 100%;
+         padding: 10px;
+         margin-bottom: 15px;
+         border-radius: 3px;
+         border: none;
+         font-size: 16px;
+         box-sizing: border-box;
+         }
+
+        input {
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            background-color: #e50914;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .options {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 15px;
+        }
+
+         .options-left {
+         display: flex;
+         align-items: center;
+         }
+
+         .options label {
+         margin-left: 5px;
+         color: #b3b3b3;
+         }
+
+         .options a {
+         color: #b3b3b3;
+         }
+
+        .captcha-notice {
+            font-size: 12px;
+            color: #b3b3b3;
+        }
+
+        .captcha-notice a {
+            color: #b3b3b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign In</h1>
+        <input type="text" placeholder="Email or phone number" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit"><a href="home">Sign In</a></button>
+        <p>New to Recollectify? <a href="signup">Sign up now</a></p>
+    </div>
+</body>
+</html>

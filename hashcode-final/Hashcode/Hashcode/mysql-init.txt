@@ -1,0 +1,12 @@
+USE mysql;
+UPDATE mysql.user SET Password = PASSWORD('mypass') WHERE User = 'root';
+FLUSH PRIVILEGES;
+
+
+
+
+
+
+"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe" 
+
+"C:\ProgramData\MySQL\MySQL Server 8.0\my.ini"

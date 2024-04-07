@@ -1,0 +1,69 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <title>Your Company Name</title>
+ <style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+    
+    .logo-slogan {
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .logo {
+        width: 200px;
+        height: auto;
+    }
+    
+    .slogan {
+        font-size: 24px;
+        margin-top: 10px;
+    }
+    
+    form {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    input[type="file"], input[type="submit"] {
+        margin: 0 10px;
+        background-color: #4654e1;
+        color: #fff;
+        
+    }
+    .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+</style>
+</head>
+<body>
+    <div class="logo-slogan">
+        <img src="logo.png" alt="Company Logo" class="logo">
+        <p class="slogan">RECOLLECTIFY</p>
+        <p class="slogan">Where memories live forever</p>
+    </div>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="keyword" placeholder="Keyword" required>
+        <button type="submit" value="Search" name="Search">Upload</button>
+        <button type="submit" class="button">!Memories Here!</button>
+    </form>
+</body>
+</html>
